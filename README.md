@@ -20,6 +20,7 @@ This project contain several parts and it's going to complete as further I go. T
 6. EDA of Pictures
 7. Data Cleaning (MetaData & Pictures)
 8. Histogram of Height, Width and channels of pics
+9. Add Label to Dataframe
 
 In the following sections, we will explain each part individually.
 
@@ -118,3 +119,6 @@ Since the rest of the features are very important, I can't fill `nan` values wit
 
 ## 8. Histogram of Height, Width and channels of pics 
 In this part I plot histogram of Height, Width and slices of pictures. I do this for find out the distribution of my data (pictures).
+
+## 9. Add Label to Dataframe
+Based on Dataset I find out that the label of dataset, stored in [marksheet.csv](https://github.com/DIAGNijmegen/picai_labels/blob/main/clinical_information/marksheet.csv). I stored this file in this repository and you can access to it. labels stored in `case_csPCa` column.
