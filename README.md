@@ -18,6 +18,8 @@ This project contain several parts and it's going to complete as further I go. T
 4. Separate DataFrame by filetype
 5. EDA of DataFrames
 6. EDA of Pictures
+7. Data Cleaning (MetaData & Pictures)
+8. Histogram of Height, Width and channels of pics
 
 In the following sections, we will explain each part individually.
 
@@ -59,11 +61,11 @@ PSA_REPORT: 7.7
 
 For understand that what are these I use [innolitics](https://dicom.innolitics.com/ciods) site and search in internet. For Example I search, "_0008, 0020 innolitics_" in google and figure out the this is the date.
 
-## Separate DataFrame by filetype
+## 4. Separate DataFrame by filetype
 
 I decided, based on suffixes, made DataFrames and store the metadata in those DataFrames, So I built `df_builder` function that takes takes an image file and columns of that image and returns the DataFrame. At the end of this part I decided that add path of files in the DataFrame too. 
 
-## EDA of DataFrames
+## 5. EDA of DataFrames
 In this part, I checked duplication of instances, datatype of columns and handling of missing values.  
 ### Duplication of Instances
 There was no duplication.
@@ -100,7 +102,7 @@ dtypes: datetime64[ns](1), float64(5), int64(1), object(12)
 ```
 
 
-## EDA of Pictures
+## 6. EDA of Pictures
 In this part I decide to check the attributes like Dimension, Spacing, Depth, Direction and Shape of image.
 
 >Dimension shows, how many dimension does the image has.  
@@ -109,3 +111,10 @@ Direction of an image refers to the orientation of the coordinate system.
 
 Also I recognize that the shape of images are not the same.  
 In the `show_image`function, I show the images.
+
+## 7. Data Cleaning (MetaData & Pictures)
+In this part, as has been said in [Clinical and Scanner Information](https://pi-cai.grand-challenge.org/DATA/) so many features need to be drop. so In this section I do this. Also I a set `Study Instance UID` or `Study Instance_UID` for index of datasets.  
+Since the rest of the features are very important, I can't fill `nan` values with inaccurate values, so I delete them. 
+
+## 8. Histogram of Height, Width and channels of pics 
+In this part I plot histogram of Height, Width and slices of pictures. I do this for find out the distribution of my data (pictures).
