@@ -12,15 +12,22 @@ To Realize what are the suffix of image files read **doc.md**.
 
 This project contain several parts and it's going to complete as further I go. The different parts of the project are as follows:
 
-1. Import Libraries
-2. Find Path
-3. Show Metadata
-4. Separate DataFrame by filetype
-5. EDA of DataFrames
-6. EDA of Pictures
-7. Data Cleaning (MetaData & Pictures)
-8. Histogram of Height, Width and channels of pics
-9. Add Label to Dataframe
++ Part1
+    1. Import Libraries
+    2. Find Path
+    3. Show Metadata
+    4. Separate DataFrame by filetype
+    5. EDA of DataFrames
+    6. EDA of Pictures
+    7. Data Cleaning (MetaData & Pictures)
+    8. Making Dataset
++ Part2
+    1. Import Libraries
+    2. Load Datasets
+    3. Histogram of Height, Width and channels of pics
+    4. Add Label to Dataframes
+    5. Image Normalization 
+    6. Noise Handling and Contrast Enhancement 
 
 In the following sections, we will explain each part individually.
 
@@ -60,7 +67,7 @@ PROSTATE_VOLUME_REPORT: 55
 PSAD_REPORT: nan  
 PSA_REPORT: 7.7  
 
-For understand that what are these I use [innolitics](https://dicom.innolitics.com/ciods) site and search in internet. For Example I search, "_0008, 0020 innolitics_" in google and figure out the this is the date.
+For understand that what are these I use [innolitics](https://dicom.innolitics.com/) site and search in internet. For Example I search, "_0008, 0020 innolitics_" in google and figure out the this is the date.
 
 ## 4. Separate DataFrame by filetype
 
@@ -115,10 +122,20 @@ In the `show_image`function, I show the images.
 
 ## 7. Data Cleaning (MetaData & Pictures)
 In this part, as has been said in [Clinical and Scanner Information](https://pi-cai.grand-challenge.org/DATA/) so many features need to be drop. so In this section I do this. Also I a set `Study Instance UID` or `Study Instance_UID` for index of datasets.  
-Since the rest of the features are very important, I can't fill `nan` values with inaccurate values, so I delete them. 
+Since the rest of the features are very important, I can't fill `nan` values with inaccurate values, so I delete them.
 
-## 8. Histogram of Height, Width and channels of pics 
+## 8. Making Datasets
+The reason that I separate this code in to several parts, is that I can modify and manipulate better and also I have checkpoints in my code execution. This part made checkpoint and save the dataset of pictures.
+
+## 9. Histogram of Height, Width and channels of pics 
 In this part I plot histogram of Height, Width and slices of pictures. I do this for find out the distribution of my data (pictures).
 
-## 9. Add Label to Dataframe
-Based on Dataset I find out that the label of dataset, stored in [marksheet.csv](https://github.com/DIAGNijmegen/picai_labels/blob/main/clinical_information/marksheet.csv). I stored this file in this repository and you can access to it. labels stored in `case_csPCa` column.
+## 10. Add Label to Dataframe
+Based on Dataset I find out that the label of dataset, stored in [marksheet.csv](https://github.com/DIAGNijmegen/picai_labels/blob/main/clinical_information/marksheet.csv). I stored this file in this repository and you can access to it. labels are stored in `case_csPCa` column.
+
+## 11. Image Normalization
+In this part I Normalize the intensity of voxels and based on distributions which are shown in this part I select standard Normalization, as you can see, in charts I have to align the intensity in to one value, in doesn't matter that counts of them are different  but they has to be like each other.
+
+## 12. Noise Handling and Contrast Enhancement
+In this part I use bilateral filter, gaussian filter and median filter for Noise handling and non of them works well. for contrast enhancement I use clahe and as we can see in pictures and based on PSNR and SSIM that the contrast of pictures are getting better.
+
